@@ -13,23 +13,15 @@ class receta(ABC):
 
 
 class mostrar(receta):
-    def mostrar(self, tipo_receta):
-        if tipo_receta == "vegetariana":
-            print(f"Receta vegetariana: {self.nombre}")
-            print("Ingredientes:")
-            for ing in self.ingredientes:
-                print(f"- {ing}")
-            print("Pasos:")
-            for paso in self.pasos:
-                print(f"{paso}")
-        elif tipo_receta == "no_vegetariana":
-            print(f"Receta NO vegetariana: {self.nombre}")
-            print("Ingredientes:")
-            for ingrediente in self.ingredientes:
-                print(f"- {ingrediente}")
-            print("Pasos:")
-            for paso in self.pasos:
-                print(f"{paso}")
+    def mostrar(self):
+        print(f": {self.nombre}")
+        print("Ingredientes:")
+        for ing in self.ingredientes:
+            print(f"- {ing}")
+        print("Pasos:")
+        for paso in self.pasos:
+            print(f"{paso}")
+
 
 # Clase para recetas vegetarianas
 class receta_vegetariana(receta):
@@ -48,9 +40,9 @@ class receta_no_vegetariana(receta):
 # Clase con utilidades del restaurante
 class utilidades:
     @staticmethod
-    def imprimir_receta(receta):
+    def imprimir_receta(receta_1):
         print("====================================")
-        receta.mostrar()
+        mostrar.mostrar(receta_1)
         print("====================================")
 
     @staticmethod
@@ -60,6 +52,7 @@ class utilidades:
 
 def crear_receta_vegetariana(tipo_receta):
 
+    
     nombre = input("nombre de la receta:")
     ingredientes = []
     print("introduce los ingredientes (fin para terminar): ")
@@ -77,26 +70,24 @@ def crear_receta_vegetariana(tipo_receta):
         pasos1.append(paso)
     
     return nombre, ingredientes, pasos1
-
+    
 # Función principal
 def principal():
-    
-    receta_1 = crear_receta_vegetariana(tipo_receta)
-    receta_2 = crear_receta_vegetariana(tipo_receta)
-    
-    # Duplicación de código al imprimir
-    print("== Mostrar recetas ==")
-    utilidades.imprimir_receta(receta_1)
-    utilidades.imprimir_receta(receta_2)
 
-    # Código duplicado para mostrar ingredientes
-    print("Ingredientes de Ensalada César:")
-    for ingrediente in receta_1.ingredientes:
-        print(f"* {ingrediente}")
+
+    tipo_receta = input("¿Que tipo de receta quieres crear?(vegetariana / no_vegetariana): ").lower()
+    nombre, ingredientes, pasos = crear_receta_vegetariana(tipo_receta)
+    if tipo_receta == "vegetariana":
+        receta_1 = receta_vegetariana(nombre, ingredientes, pasos, )
+        print("== Mostrar recetas ==")
+        utilidades.imprimir_receta(receta_1)
+
+    elif tipo_receta == "no_vegetariana":
+        receta_2 = receta_no_vegetariana(nombre, ingredientes, pasos)
+        print("== Mostrar recetas ==")
+        utilidades.imprimir_receta(receta_2)
+
     
-    print("Ingredientes de Pollo al horno:")
-    for ingrediente in receta_2.ingredientes:
-        print(f"* {ingrediente}")
 
 
 
