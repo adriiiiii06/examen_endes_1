@@ -58,10 +58,31 @@ class utilidades:
         for l in lista:
             print(f"* {l}")
 
+def crear_receta_vegetariana(tipo_receta):
+
+    nombre = input("nombre de la receta:")
+    ingredientes = []
+    print("introduce los ingredientes (fin para terminar): ")
+    while True:
+        ing = input("- ")
+        if ing.lower() == "fin":
+            break
+        ingredientes.append(ing)
+    pasos1 = []
+    print("introduce los ingredientes (fin para terminar): ")
+    while True:
+        paso = input("- ")
+        if paso.lower() == "fin":
+            break
+        pasos1.append(paso)
+    
+    return nombre, ingredientes, pasos1
+
 # Función principal
 def principal():
-    receta_1 = receta_vegetariana("Ensalada César", ["lechuga", "queso", "pan tostado", "salsa"], ["Lavar", "Mezclar", "Servir"])
-    receta_2 = receta_no_vegetariana("Pollo al horno", ["pollo", "patatas", "ajo", "aceite"], ["Preparar", "Hornear", "Servir"])
+    
+    receta_1 = crear_receta_vegetariana(tipo_receta)
+    receta_2 = crear_receta_vegetariana(tipo_receta)
     
     # Duplicación de código al imprimir
     print("== Mostrar recetas ==")
@@ -76,6 +97,8 @@ def principal():
     print("Ingredientes de Pollo al horno:")
     for ingrediente in receta_2.ingredientes:
         print(f"* {ingrediente}")
+
+
 
 
 # Ejecutar el programa
