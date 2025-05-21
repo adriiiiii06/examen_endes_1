@@ -12,28 +12,37 @@ class receta(ABC):
         pass
 
 
+class mostrar(receta):
+    def mostrar(self, tipo_receta):
+        if tipo_receta == "vegetariana":
+            print(f"Receta vegetariana: {self.nombre}")
+            print("Ingredientes:")
+            for ing in self.ingredientes:
+                print(f"- {ing}")
+            print("Pasos:")
+            for paso in self.pasos:
+                print(f"{paso}")
+        elif tipo_receta == "no_vegetariana":
+            print(f"Receta NO vegetariana: {self.nombre}")
+            print("Ingredientes:")
+            for ingrediente in self.ingredientes:
+                print(f"- {ingrediente}")
+            print("Pasos:")
+            for paso in self.pasos:
+                print(f"{paso}")
+
 # Clase para recetas vegetarianas
 class receta_vegetariana(receta):
     def mostrar(self):
-        print(f"Receta vegetariana: {self.nombre}")
-        print("Ingredientes:")
-        for ing in self.ingredientes:
-            print(f"- {ing}")
-        print("Pasos:")
-        for paso in self.pasos:
-            print(f"{paso}")
+        tipo_receta = "vegetariana"
+        mostrar.mostrar(self, tipo_receta)
 
 
 # Clase para recetas no vegetarianas
 class receta_no_vegetariana(receta):
     def mostrar(self):
-        print(f"Receta NO vegetariana: {self.nombre}")
-        print("Ingredientes:")
-        for ingrediente in self.ingredientes:
-            print(f"- {ingrediente}")
-        print("Pasos:")
-        for paso in self.pasos:
-            print(f"{paso}")
+        tipo_receta = "no_vegetariana"
+        mostrar.mostrar(self, tipo_receta)
 
 
 # Clase con utilidades del restaurante
